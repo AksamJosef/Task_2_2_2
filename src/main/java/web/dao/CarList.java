@@ -1,11 +1,16 @@
-package web.model;
+package web.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import web.model.Car;
 import web.service.CarService;
 import web.service.CarServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;
 
+
+@Component
 public class CarList {
     private Car[] cars = {
             new Car("Nissan", "Skyline R34", 1999),
@@ -14,9 +19,10 @@ public class CarList {
             new Car("Honda", "Civic", 2001),
             new Car("Honda", "Accord", 2008)
     };
-    private CarService carService = new CarServiceImpl();
 
-    public List<Car> getCars(int count) {
-        return carService.getCarList(Arrays.stream(cars).toList(), count);
+    private List<Car> carList = Arrays.stream(cars).toList();
+
+    public List<Car> getCarList() {
+        return carList;
     }
 }
